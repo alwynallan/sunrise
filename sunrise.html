@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!-- This is the version for node.js -->
+<!-- Copyright (C) 2017 alwynallan@gmail.com -->
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Sunrise</title>
+
+	<link rel="stylesheet" href="demo.css">
+	<link rel="stylesheet" href="form-basic.css">
+
+<script>
+function ajax_post(payload, callback){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      //console.log(this.readyState + ", " + this.status + ", " + this.responseText);
+      if (this.readyState == 4 && this.status == 200) {
+        callback(this.responseText);
+      }
+    };
+    //xhttp.open("POST", "../sunrise_backend.php", true);
+    xhttp.open("POST", "backend", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(payload));
+}
+
+function getQueryParam(param) {
+    var result =  window.location.search.match(
+        new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")
+    );
+
+    return result ? result[3] : param + " missing from URL";
+}
+
+function jsonify(form) { // should assemble and return real JSON
+    if (!form || form.nodeName !== "FORM") {
+        return;
+    }
+    var i, j, q = {};
+    //for (i = form.elements.length - 1; i >= 0; i = i - 1) {
+    for (i = 0; i < form.elements.length; i++) {
+        if (form.elements[i].name === "") {
+            continue;
+        }
+        switch (form.elements[i].nodeName) {
+        case 'INPUT':
+            switch (form.elements[i].type) {
+              case 'checkbox':
+                q[form.elements[i].name] = form.elements[i].checked;
+                break;
+              default:
+                q[form.elements[i].name] = form.elements[i].value;
+                break;
+            }
+            break;
+        case 'TEXTAREA':
+        case 'BUTTON':
+        case 'file':
+            break;
+        case 'SELECT': // untested
+            switch (form.elements[i].type) {
+            case 'select-one':
+                q[form.elements[i].name] = form.elements[i].selected;
+                break;
+            case 'select-multiple':
+                q[form.elements[i].name] = [];
+                for (j = 0; j < form.elements[i].options.length; j++) {
+                    if (form.elements[i].options[j].selected) {
+                        q[form.elements[i].name].push(form.elements[i].options[j].selected);
+                    }
+                }
+                break;
+            }
+            break;
+        }
+    }
+    return q;
+}
+
+function changeActive() {
+  var active = document.getElementById("active").checked;
+  //document.getElementById("result").innerHTML = active;
+  var form = document.getElementById("settings");
+  var i;
+  for (i = 0; i < form.elements.length; i++) {
+    let fen = form.elements[i].name;
+    if (!(fen === "bulb" || fen === "active" || form.elements[i].nodeName === "BUTTON")) {
+      form.elements[i].disabled = !active;
+    }
+  }
+}
+
+function populateFields() {
+  document.getElementById("bulb").value = decodeURIComponent(getQueryParam("bulb"));
+  var query = {"command": "load"};
+  query["bulb"] = getQueryParam("bulb");
+  ajax_post(query, populateFields2);
+}
+
+function populateFields2(message) {
+  //document.getElementById("result").innerHTML = message;
+  var vals = JSON.parse(message);
+  document.getElementById("active"   ).checked = vals["active"]; // expedient but formify(form, json) would be better
+  document.getElementById("start"    ).value   = vals["start"];
+  document.getElementById("duration" ).value   = vals["duration"];
+  document.getElementById("mon"      ).checked = vals["mon"];
+  document.getElementById("tue"      ).checked = vals["tue"];
+  document.getElementById("wed"      ).checked = vals["wed"];
+  document.getElementById("thu"      ).checked = vals["thu"];
+  document.getElementById("fri"      ).checked = vals["fri"];
+  document.getElementById("sat"      ).checked = vals["sat"];
+  document.getElementById("sun"      ).checked = vals["sun"];
+  document.getElementById("color1"   ).value   = vals["color1"];
+  document.getElementById("color2"   ).value   = vals["color2"];
+  document.getElementById("final"    ).value   = vals["final"];
+  changeActive();
+  if(vals["default"]) doSave(); // for the side effect of adding the crontab
+}
+
+function doSave() {
+    document.getElementById("result").innerHTML = "Saving...";
+    var payload = jsonify(document.getElementById("settings"));
+    payload["command"] = "save";
+    ajax_post(payload, saveDone);
+}
+
+function clearMessage() {
+  document.getElementById("result").innerHTML = "";
+}
+
+function saveDone(message) {
+  document.getElementById("result").innerHTML = "Saved!";
+  setTimeout(clearMessage,750);
+}
+</script>
+
+</head>
+
+<body onload="populateFields()">
+	<header>
+		<h1>Sunrise simulation</h1>
+        
+    </header>
+
+    <div class="main-content">
+
+        <form id="settings" class="form-basic" onchange="doSave()">
+
+            <div class="form-title-row">
+                <h2>Settings</h2>
+                <div style="height:12pt;"> <span id="result"></span> </div>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Bulb</span>
+                    <input type="text" name="bulb" id="bulb" disabled>
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span> </span>
+                </label>
+                <div class="form-radio-buttons">
+                <div><label>
+                <input type="checkbox" name="active" id="active" onchange="changeActive()"> <span>Active</span>
+                </label></div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <label>
+                    <span>Start</span>
+                    <input type="time" name="start" id="start">
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Minutes</span>
+                    <input type="number" name="duration" id="duration" min="5" max="90">
+                </label>
+            </div>
+
+            <div class="form-row">
+                <label>
+                    <span>Days</span>
+                </label>
+                <div class="form-radio-buttons">
+                  <div><label>
+                      <input type="checkbox" name="mon" id="mon"> <span>Monday</span>
+                  </label></div>
+                  <div><label>
+                      <input type="checkbox" name="tue" id="tue" > <span>Tuesday</span>
+                  </label></div>
+                  <div><label>
+                      <input type="checkbox" name="wed" id="wed"> <span>Wednesday</span>
+                  </label></div>
+                  <div><label>
+                      <input type="checkbox" name="thu" id="thu"> <span>Thursday</span>
+                  </label></div>
+                  <div><label>
+                      <input type="checkbox" name="fri" id="fri"> <span>Friday</span>
+                  </label></div>
+                  <div><label>
+                      <input type="checkbox" name="sat" id="sat"> <span>Saturday</span>
+                  </label></div>
+                  <div><label>
+                      <input type="checkbox" name="sun" id="sun"> <span>Sunday</span>
+                  </label></div>
+                </div>
+            </div>
+            
+            <div class="form-row">
+              <label>
+                <span>First light</span>
+              </label>
+                <input type="color" name="color1" id="color1">
+            </div>
+
+            <div class="form-row">
+              <label>
+                <span>Twilight</span>
+                <input type="color" name="color2" id="color2">
+              </label>
+            </div>
+
+            <div class="form-row">
+              <label>
+                <span>Final brightness</span>
+                <input type="number" name="final" id="final" min="5" max="100">
+              </label>
+            </div>
+
+        </form>
+ 
+    </div>
+    
+</body>
+
+</html>
