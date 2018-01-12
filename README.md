@@ -18,9 +18,7 @@ Try
 ```
         $ node master.js
 ```
-then configure at
-
-        [http://localhost:8000/]
+then configure at [http://localhost:8000/]
 
 To install permanently use
 ```
