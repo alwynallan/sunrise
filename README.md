@@ -1,6 +1,6 @@
 # sunrise
 
-## Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
+### Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
 
 Apparently there's science that says that sunrise is a healthy way to wake up. If your boss
  won't let you schedule your day around the sun, you need this.
@@ -21,7 +21,7 @@ Try
 ```
         $ node master.js
 ```
-then configure at [http://localhost:8000/] with a UI like this
+then configure at [http://localhost:8000/](http://localhost:8000/) with a UI like this
 
 ![User Interface](/Settings.5.png)
 
@@ -39,5 +39,3 @@ Then test
 ```
         $ sudo reboot
 ```
-
-[http://localhost:8000/]: http://localhost:8000/
