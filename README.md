@@ -1,6 +1,8 @@
 # sunrise
 
-Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
+Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js. Apparently
+there's science that says that sunrise is a healthy way to wake up. If that doesn't convince your
+boss, you need this.
 
 Get the TP-Link LB-130s configured and named on the LAN with the Kasa app. Update firmware.
 LB-230s should work, but have not been tested. This should work with node and npm on an
