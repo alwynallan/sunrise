@@ -1,6 +1,6 @@
 # sunrise
 
-Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
+## Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
 
 Apparently there's science that says that sunrise is a healthy way to wake up. If your boss
  won't let you schedule your day around the sun, you need this.
