@@ -1,4 +1,4 @@
-#sunrise
+# sunrise
 
 Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
 
