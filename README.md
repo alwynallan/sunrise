@@ -18,7 +18,9 @@ Try
 ```
         $ node master.js
 ```
-then configure at [http://localhost:8000/]
+then configure at [http://localhost:8000/] with a UI like this
+
+![User Interface](/Settings.5.png)
 
 To install permanently use
 ```
