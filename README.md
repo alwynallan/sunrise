@@ -7,7 +7,9 @@ Apparently there's science that says that sunrise is a healthy way to wake up. I
  
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=u5jpNrPbcPU
 " target="_blank"><img src="http://img.youtube.com/vi/u5jpNrPbcPU/0.jpg" 
-alt="Sunrise Simulation Demo" width="640" height="360" border="10" /></a>
+alt="Sunrise Simulation Demo" width="640" height="315" border="10" /></a>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u5jpNrPbcPU?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 Get the TP-Link LB-130s configured and named on the LAN with the Kasa app. Update firmware.
 LB-230s should work, but have not been tested. This should work with node and npm on an
