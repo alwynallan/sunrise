@@ -14,6 +14,7 @@ configured and named on the LAN with the Kasa app. Update firmware.
 [LB-230s](https://www.amazon.com/gp/product/B072N7GG9K/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B072N7GG9K&linkCode=as2&tag=alwynallan-20&linkId=f74cb1f11989a4c79f8cf2e0e1e1a155)
 should work, but have not been tested. This works on Linux. It should work with node and npm on an
 always-on Windows or OS-X machine, but those have not been tested. E-mail alwynallan@gmail.com with info.
+[The two links in this paragraphs are Amazon affiliate links, which could earn me a commission.]
 
 Requires some node.js packages:
 ```
