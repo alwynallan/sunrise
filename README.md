@@ -2,8 +2,9 @@
 
 ### Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
 
-Apparently there's science that says that sunrise is a healthy way to wake up. If your boss
- won't let you schedule your day around the sun, you need this.
+Apparently there's [science](https://en.wikipedia.org/wiki/Dawn_simulation) that says that
+sunrise is a healthy way to wake up. If your boss won't let you schedule your day around the
+sun, you need this.
  
 <a href="https://youtu.be/u5jpNrPbcPU" target="_blank">
 <img src="youtube.jpg" alt="Sunrise Simulation Demo" width="480" height="270" border="10" /></a>
