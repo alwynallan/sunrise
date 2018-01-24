@@ -174,17 +174,30 @@ client.on('device-new', (device) => {
     if (info.alias === bulb_value) {
       //console.log(device);
       //console.log(info);
-      do_cycle(device);
       endDiscovery();
+      do_cycle(device);
     }
   });
 });
 
 var discovery_timer = null;
+var retries = 0;
+
 var endDiscovery = () => {
   clearTimeout(discovery_timer);
   client.stopDiscovery();
 }
 
-client.startDiscovery();
-discovery_timer = setTimeout(endDiscovery, 4000);
+var retryDiscovery = () => {
+  if(retries) client.stopDiscovery();
+  retries++;
+  if(retries < 6) {
+    //console.log("Beginning try " + retries);
+    client.startDiscovery();
+    discovery_timer = setTimeout(retryDiscovery, 400);
+  }
+}
+
+// It would be nice, and possibly more reliable, to store and use each bulb's IP and use it with client.getDevice({host: host_ip}), but
+// the IP could change over time, particularly if it assigned to a different WiFi network. So, 
+retryDiscovery();
