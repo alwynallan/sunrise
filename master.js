@@ -35,9 +35,11 @@ async function bulb_page(res) {
   res.write('<div class="main-content"><div class="form-basic">\n');
   var client = new Client();
   let sleeper = sleep(400);
+  var bulb_count = 0;
   client.startDiscovery();
   client.on('bulb-new', (bulb) => {
     if(bulb._sysInfo.is_color === 1) {
+      bulb_count++;
       res.write('<h3>' + bulb.alias +
         ' <a href="sunrise.html?bulb=' + encodeURIComponent(bulb.alias).replace(/'/g, "%27") +
         '">Sunrise Settings</a> <button onclick="ajax_get(\'off?' + bulb.host +
@@ -47,6 +49,8 @@ async function bulb_page(res) {
   });
   await sleeper;
   client.stopDiscovery();
+  if(bulb_count == 0) res.write("<h3>No color bulbs found!</h3>\n");
+  res.write('<div style="text-align: left; margin-top: 2em;"><a href="https://github.com/alwynallan/sunrise">Source on GitHub</a></div>\n');
   res.write('</div></div>\n</body>\n</html>\n');
   res.end();
 }
