@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="\\apa-store\peter\src\sunrise\logo.png"
+   inkscape:export-xdpi="254"
+   inkscape:export-ydpi="254">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -71,9 +74,10 @@
            y="415.67969"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial" /></flowRegion><flowPara
          id="flowPara856"></flowPara></flowRoot>    <g
-       id="g875"
-       transform="translate(1.8252714,-9.5804293)">
+       id="g891"
+       transform="translate(-1.8252716,-0.74969498)">
       <g
+         transform="translate(3.650543,-9.5804293)"
          id="g866">
         <ellipse
            style="opacity:1;fill:#ff0065;fill-opacity:0.98840583;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -106,13 +110,13 @@
       </g>
       <text
          id="text860"
-         y="117.00546"
-         x="54.34396"
+         y="108.92442"
+         x="57.994503"
          style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ff0065;fill-opacity:0.99215686;stroke:none;stroke-width:0.26458332"
          xml:space="preserve"><tspan
            style="font-size:11.28888893px;fill:#ff0065;fill-opacity:0.99215686;stroke-width:0.26458332"
-           y="117.00546"
-           x="54.34396"
+           y="108.92442"
+           x="57.994503"
            id="tspan858"
            sodipodi:role="line">sunrise</tspan></text>
     </g>
