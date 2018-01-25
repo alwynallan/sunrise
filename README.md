@@ -1,4 +1,4 @@
-![sunrise](/logo.png =250x250)
+![sunrise](/logo.png)
 
 ### Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
 
