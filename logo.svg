@@ -17,8 +17,8 @@
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
    sodipodi:docname="logo.svg"
    inkscape:export-filename="\\apa-store\peter\src\sunrise\logo.png"
-   inkscape:export-xdpi="254"
-   inkscape:export-ydpi="254">
+   inkscape:export-xdpi="127"
+   inkscape:export-ydpi="127">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -29,7 +29,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.6465833"
-     inkscape:cx="94.488189"
+     inkscape:cx="66.153297"
      inkscape:cy="94.714986"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -51,7 +51,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -73,7 +73,7 @@
            x="187.99193"
            y="415.67969"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial" /></flowRegion><flowPara
-         id="flowPara856"></flowPara></flowRoot>    <g
+         id="flowPara856" /></flowRoot>    <g
        id="g891"
        transform="translate(-1.8252716,-0.74969498)">
       <g
