@@ -1,8 +1,7 @@
 <p align="center">
 <img src="/logo.png" width="250" height="250" alt="sunrise"/>
-
-# sunrise
 </p>
+<h1 align="center">sunrise</h1>
 
 ### Sunrise Simulation for TP-Link Kasa color lightbulbs with web interface using node.js.
 
