@@ -20,7 +20,47 @@
    inkscape:export-xdpi="127"
    inkscape:export-ydpi="127">
   <defs
-     id="defs2" />
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter889"
+       x="-0.023806452"
+       width="1.0476129"
+       y="-0.02419672"
+       height="1.0483934">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.22356793"
+         id="feGaussianBlur891" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter925"
+       x="-0.011903226"
+       width="1.0238065"
+       y="-0.01209836"
+       height="1.0241967">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.11178397"
+         id="feGaussianBlur927" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter929"
+       x="-0.035709679"
+       width="1.0714194"
+       y="-0.036295081"
+       height="1.0725902">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.3353519"
+         id="feGaussianBlur931" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -29,8 +69,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="8.6465833"
-     inkscape:cx="66.153297"
-     inkscape:cy="94.714986"
+     inkscape:cx="37.818405"
+     inkscape:cy="99.341091"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -74,51 +114,38 @@
            y="415.67969"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial" /></flowRegion><flowPara
          id="flowPara856" /></flowRoot>    <g
-       id="g891"
-       transform="translate(-1.8252716,-0.74969498)">
-      <g
-         transform="translate(3.650543,-9.5804293)"
-         id="g866">
-        <ellipse
-           style="opacity:1;fill:#ff0065;fill-opacity:0.98840583;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="path815"
-           cx="59.436352"
-           cy="97.424713"
-           rx="11.269278"
-           ry="11.087516" />
-        <ellipse
-           style="opacity:1;fill:#ff4600;fill-opacity:0.98840583;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="path815-9"
-           cx="67.373314"
-           cy="97.424713"
-           rx="11.269278"
-           ry="11.087516" />
-        <ellipse
-           style="opacity:1;fill:#ff9300;fill-opacity:0.98840583;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="path815-8"
-           cx="75.310287"
-           cy="97.424713"
-           rx="11.269278"
-           ry="11.087516" />
-        <ellipse
-           style="opacity:1;fill:#ffcd00;fill-opacity:0.98840583;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="path815-4"
-           cx="83.247253"
-           cy="97.424713"
-           rx="11.269278"
-           ry="11.087516" />
-      </g>
-      <text
-         id="text860"
-         y="108.92442"
-         x="57.994503"
-         style="font-style:normal;font-weight:normal;font-size:3.52777767px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ff0065;fill-opacity:0.99215686;stroke:none;stroke-width:0.26458332"
-         xml:space="preserve"><tspan
-           style="font-size:11.28888893px;fill:#ff0065;fill-opacity:0.99215686;stroke-width:0.26458332"
-           y="108.92442"
-           x="57.994503"
-           id="tspan858"
-           sodipodi:role="line">sunrise</tspan></text>
+       id="g947"
+       transform="translate(0.10942803,5.752755)">
+      <ellipse
+         transform="matrix(0.78666974,0,0,0.79896947,10.745733,17.485324)"
+         ry="11.087516"
+         rx="11.269278"
+         cy="86.283974"
+         cx="61.664047"
+         id="path815"
+         style="opacity:1;fill:#ff0065;fill-opacity:1;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter929)" />
+      <ellipse
+         transform="matrix(0.84697151,0,0,0.86036426,9.0061364,11.490514)"
+         ry="11.087516"
+         rx="11.269278"
+         cy="87.094589"
+         cx="69.601006"
+         id="path815-9"
+         style="opacity:1;fill:#ff4600;fill-opacity:1;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter889)" />
+      <ellipse
+         transform="matrix(0.91006485,0,0,0.92463843,6.0928471,5.892581)"
+         ry="11.087516"
+         rx="11.269278"
+         cy="87.094589"
+         cx="77.537979"
+         id="path815-8"
+         style="opacity:1;fill:#ff9300;fill-opacity:1;stroke:none;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter925)" />
+      <circle
+         r="11"
+         cy="86.423584"
+         cx="85.358665"
+         id="path815-4"
+         style="opacity:1;fill:#ffcd00;fill-opacity:1;stroke:none;stroke-width:0.26077944;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
 </svg>
