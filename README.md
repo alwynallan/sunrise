@@ -21,9 +21,9 @@ always-on Windows or OS-X machine, but those have not been tested. E-mail alwyna
 
 Requires some node.js packages:
 ```
-        $ npm install node-cron
-        $ npm install node-persist
-        $ npm install tplink-smarthome-api
+        $ npm install node-cron@1.2.1
+        $ npm install node-persist@2.1.0
+        $ npm install tplink-smarthome-api@0.20.1
 ```
 Note that node-persist requires user write permission in the working directory.
 
