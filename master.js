@@ -105,9 +105,9 @@ function doOff (hostIP) {
   })
 }
 
-function doDemo (bulbName) {
+async function doDemo (bulbName) {
   let key = 'bulb_' + bulbName + '.json'
-  let value = storage.getItemSync(key)
+  let value = await storage.getItem(key)
   cp.fork('sunrise-tp.js', [bulbName, '2', value.color1, value.color2, value.final])
 }
 
@@ -117,7 +117,7 @@ function doBackend (req, res) {
   req.on('data', function (data) {
     jsonString += data
   })
-  req.on('end', function () {
+  req.on('end', async function () {
     let obj = JSON.parse(jsonString)
     obj.bulb = decodeURIComponent(obj.bulb)
     let key = 'bulb_' + obj.bulb + '.json'
@@ -125,7 +125,7 @@ function doBackend (req, res) {
       case 'save':
         delete obj.command
         delete obj.default
-        storage.setItemSync(key, obj)
+        await storage.setItem(key, obj)
         // console.log("The config was saved!");
         if (tasks.hasOwnProperty(obj.bulb)) {
           tasks[obj.bulb].destroy()
@@ -136,7 +136,7 @@ function doBackend (req, res) {
         res.end('File saved: ' + key)
         break
       case 'load':
-        if (storage.keys().indexOf(key) === -1) {
+        if ((await storage.keys()).indexOf(key) === -1) {
           let def = {default: true,
             active: true,
             start: '05:30',
@@ -153,12 +153,12 @@ function doBackend (req, res) {
             final: '100'}
           def.bulb = obj.bulb
           let deftxt = JSON.stringify(def)
-          storage.setItemSync(key, def)
+          await storage.setItem(key, def)
           res.writeHead(200, {'Content-Type': 'text/plain'})
           res.end(deftxt)
         } else {
           res.writeHead(200, {'Content-Type': 'text/plain'})
-          res.end(JSON.stringify(storage.getItemSync(key)))
+          res.end(JSON.stringify(await storage.getItem(key)))
         }
         break
       default:
@@ -169,7 +169,7 @@ function doBackend (req, res) {
   })
 }
 
-function responer (req, res) {
+async function responer (req, res) {
   let [page, args] = req.url.split('?', 2)
   // console.log('page: ' + page + ' args: ' + args);
   switch (page) {
@@ -199,7 +199,7 @@ function responer (req, res) {
       doBackend(req, res)
       break
     case '/wipe.i.know.what.im.doing':
-      storage.clearSync()
+      await storage.clear()
       res.writeHead(200, {'Content-Type': 'text/plain'})
       res.end('Your storage is wiped out!')
       break
@@ -210,10 +210,10 @@ function responer (req, res) {
   }
 }
 
-function sunriseSim (bulbName) {
+async function sunriseSim (bulbName) {
   // console.log('Doing sim for ' + bulbName);
   let key = 'bulb_' + bulbName + '.json'
-  let value = storage.getItemSync(key)
+  let value = await storage.getItem(key)
   cp.fork('sunrise-tp.js', [bulbName, value.duration, value.color1, value.color2, value.final])
 }
 
@@ -234,8 +234,13 @@ function addCron (v) {
   }
 }
 
+async function kickIt () {
+  await storage.init()
+  for (var i = 0; i < storage.values().length; i++) addCron(storage.values()[i])
+  var server = http.createServer(responer)
+  server.listen(8000)
+}
+
 var tasks = {}
-storage.initSync()
-for (var i = 0; i < storage.values().length; i++) addCron(storage.values()[i])
-var server = http.createServer(responer)
-server.listen(8000)
+
+kickIt()

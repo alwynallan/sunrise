@@ -1,0 +1,30 @@
+{
+  "name": "sunrise",
+  "version": "1.0.0",
+  "description": "Simulates sunrise using TP-Link Kasa color bulbs",
+  "main": "master.js",
+  "dependencies": {
+    "node-cron": "^1.2.1",
+    "node-persist": "^3.0.5",
+    "tplink-smarthome-api": "^0.20.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alwynallan/sunrise.git"
+  },
+  "keywords": [
+    "tp-link",
+    "kasa",
+    "sunrise"
+  ],
+  "author": "Peter Allan <alwynallan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alwynallan/sunrise/issues"
+  },
+  "homepage": "https://github.com/alwynallan/sunrise#readme"
+}
