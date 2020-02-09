@@ -33,14 +33,19 @@ then configure at [http://localhost:8000/](http://localhost:8000/) with a UI lik
 
 ![User Interface](/Settings.5.png)
 
-To install permanently use
+To install permanently, if Ubuntu 18.04, avoid bugs with
+```
+       $ sudo npm install -g npm@latest
+       $ hash -d npm
+```
+then for any Linux/OS-X
 ```
        $ sudo npm install -g forever
        $ crontab -e
 ```
 And add the lines
 ```
-       SP=[Path]
+       SP=[Absolute path to sunrise/master.js]
        @reboot /usr/local/bin/forever start --workingDir $SP $SP/master.js
 ```
 Then test
