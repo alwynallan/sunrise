@@ -45,7 +45,7 @@ then for any Linux/OS-X
 ```
 And add the lines
 ```
-       SP=[Absolute path to sunrise/master.js]
+       SP=[Absolute path to master.js]
        @reboot /usr/local/bin/forever start --workingDir $SP $SP/master.js
 ```
 Then test
