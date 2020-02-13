@@ -14,6 +14,30 @@ var storage = require('node-persist')
 // https://github.com/plasticrake/tplink-smarthome-api
 const { Client } = require('tplink-smarthome-api')
 
+// https://github.com/winstonjs/winston
+//const winston = require('winston');
+
+//const logger = winston.createLogger({
+//  level: 'info',
+//  format: winston.format.combine(
+//    winston.format.timestamp({
+//      format: 'YYYY-MM-DD HH:mm:ss'
+//    }),
+//    winston.format.json()
+//  ),
+//  defaultMeta: { service: 'user-service' },
+//  transports: [
+//    new winston.transports.File({ filename: 'error.log', level: 'error' }),
+//    new winston.transports.File({ filename: 'combined.log' })
+//  ]
+//});
+
+//if (process.env.NODE_ENV !== 'production') {
+//  logger.add(new winston.transports.Console({
+//    format: winston.format.simple()
+//  }));
+//}
+
 function sleep (ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -211,7 +235,7 @@ async function responer (req, res) {
 }
 
 async function sunriseSim (bulbName) {
-  // console.log('Doing sim for ' + bulbName);
+  //logger.info('Doing sim for ' + bulbName);
   let key = 'bulb_' + bulbName + '.json'
   let value = await storage.getItem(key)
   cp.fork('sunrise-tp.js', [bulbName, value.duration, value.color1, value.color2, value.final])
@@ -229,16 +253,19 @@ function addCron (v) {
     wday = wday.replace(/,$/, '')
     if (wday === '') wday = '*' // none is all
     let cronStr = '0 ' + parseInt(min) + ' ' + parseInt(hour) + ' * * ' + wday
-    // console.log('scheduling ' + v.bulb + ' at ' + cronStr);
+    //logger.info('scheduling ' + v.bulb + ' at ' + cronStr);
     tasks[v.bulb] = cron.schedule(cronStr, function () { sunriseSim(v.bulb) })
   }
 }
 
 async function kickIt () {
   await storage.init()
-  for (var i = 0; i < storage.values().length; i++) addCron(storage.values()[i])
+  let all = await storage.values()
+  //logger.info('All stored ' + JSON.stringify(all));
+  for (var i = 0; i < all.length; i++) addCron(all[i])
   var server = http.createServer(responer)
   server.listen(8000)
+  //logger.info('kickIt called');
 }
 
 var tasks = {}
