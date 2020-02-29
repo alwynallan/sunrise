@@ -108,6 +108,8 @@ function populateFields2(message) {
   document.getElementById("active"   ).checked = vals["active"]; // expedient but formify(form, json) would be better
   document.getElementById("start"    ).value   = vals["start"];
   document.getElementById("duration" ).value   = vals["duration"];
+  document.getElementById("turn_off" ).checked = vals["turn_off"];
+  document.getElementById("off_time" ).value   = vals["off_time"];
   document.getElementById("mon"      ).checked = vals["mon"];
   document.getElementById("tue"      ).checked = vals["tue"];
   document.getElementById("wed"      ).checked = vals["wed"];
@@ -175,18 +177,26 @@ function saveDone(message) {
             </div>
             
             <div class="form-row">
-                <label>
-                    <span>Start</span>
-                    <input type="time" name="start" id="start">
-                </label>
-            </div>
+              <label>
+                  <span>Start</span>
+                  <input type="time" name="start" id="start">
+              </label>
+          </div>
 
-            <div class="form-row">
-                <label>
-                    <span>Minutes</span>
-                    <input type="number" name="duration" id="duration" min="5" max="90">
-                </label>
-            </div>
+          <div class="form-row">
+            <label>
+                <span>Minutes</span>
+                <input type="number" name="duration" id="duration" min="5" max="90">
+            </label>
+        </div>
+
+      <div class="form-row">
+            <label>
+                <span>Turn off</span>
+                <input type="checkbox" name="turn_off" id="turn_off">
+                <input type="time" name="off_time" id="off_time">
+            </label>
+        </div>
 
             <div class="form-row">
                 <label>

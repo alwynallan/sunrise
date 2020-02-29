@@ -1,5 +1,4 @@
 // Copyright (C) 2017 alwynallan@gmail.com
-// Merry Christmas Sue!
 
 var http = require('http')
 var fs = require('fs')
@@ -129,6 +128,17 @@ function doOff (hostIP) {
   })
 }
 
+function doOff2 (bulbName) {
+  const client = new Client();
+  client.startDiscovery().on('device-new', (device) => {
+    //device.getSysInfo().then(console.log);
+    if(device.alias === bulbName) {
+      //console.log('found ' + bulbName + ' and turning it off')
+      device.setPowerState(false);
+    }
+  });
+}
+
 async function doDemo (bulbName) {
   let key = 'bulb_' + bulbName + '.json'
   let value = await storage.getItem(key)
@@ -151,6 +161,10 @@ function doBackend (req, res) {
         delete obj.default
         await storage.setItem(key, obj)
         // console.log("The config was saved!");
+        if (tasks.hasOwnProperty(obj.bulb + '_off')) {
+          tasks[obj.bulb + '_off'].destroy()
+          delete tasks[obj.bulb + '_off']
+        }
         if (tasks.hasOwnProperty(obj.bulb)) {
           tasks[obj.bulb].destroy()
           delete tasks[obj.bulb]
@@ -165,6 +179,8 @@ function doBackend (req, res) {
             active: true,
             start: '05:30',
             duration: '30',
+            turn_off: false,
+            off_time: '08:30',
             mon: true,
             tue: true,
             wed: true,
@@ -255,6 +271,17 @@ function addCron (v) {
     let cronStr = '0 ' + parseInt(min) + ' ' + parseInt(hour) + ' * * ' + wday
     //logger.info('scheduling ' + v.bulb + ' at ' + cronStr);
     tasks[v.bulb] = cron.schedule(cronStr, function () { sunriseSim(v.bulb) })
+    if(v.turn_off) {
+      let parts = v.off_time.split(':', 2)
+      if (isNaN(parts[0]) || parts[0] === '') parts[0] = 0 // cron is very picky
+      if (isNaN(parts[1]) || parts[1] === '') parts[1] = 0
+      let hour = parts[0]
+      let min = parts[1]
+      // inherit wday from previous
+      let cronStr = '0 ' + parseInt(min) + ' ' + parseInt(hour) + ' * * ' + wday
+      //logger.info('scheduling ' + v.bulb + ' at ' + cronStr);
+      tasks[v.bulb + '_off'] = cron.schedule(cronStr, function () { doOff2(v.bulb) })
+    }
   }
 }
 
